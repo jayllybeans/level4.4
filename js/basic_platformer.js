@@ -56,10 +56,6 @@ function animate()
 	{
 		player.vx += player.ax * player.force;
 	}
-	if(s)
-	{
-		platform0.hitTestPoint(player.bottom) = false;
-	}
 
 	player.vx *= fX;
 	player.vy *= fY;
@@ -91,17 +87,21 @@ function animate()
 	
 	//---------Objective: Get the blue pearl----------------------------------------------------------------------------------------------------
 	//---------Add to the following condition so that when you hold "s" you climb down through the platform. 
-	
-	
 
-	while(platform1.hitTestPoint(player.bottom()) && player.vy >=0 )
+	while(platform1.hitTestPoint(player.bottom()) && player.vy >=0)
 	{
 		player.canJump = true;
 		player.y--;
-		player.vy = 0;
+		if (s)
+		{
+			player.vy = 10;
+			platform1.hitTestPoint(player.bottom()) = false;
+		}
+		else
+		{
+			player.vy = 0;
+		}
 	}
-	
-	
 
 
 
